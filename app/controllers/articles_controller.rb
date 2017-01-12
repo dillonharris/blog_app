@@ -38,7 +38,7 @@ class ArticlesController < ApplicationController
         redirect_to @article
       else
         flash.now[:danger] = "Article has not been updated"
-        render :edit 
+        render :edit
       end
     end
   end
@@ -55,13 +55,12 @@ class ArticlesController < ApplicationController
   end
 
   private
+  
+	def article_params
+		params.require(:article).permit(:title, :body)
+	end
 
-  	def article_params
-  		params.require(:article).permit(:title, :body)
-  	end
-
-    def set_article
-      @article = Article.find(params[:id])
-    end
-
+  def set_article
+    @article = Article.find(params[:id])
+  end
 end

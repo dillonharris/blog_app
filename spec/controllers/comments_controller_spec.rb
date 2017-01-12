@@ -2,13 +2,13 @@ require 'rails_helper'
 require 'support/macros'
 
 RSpec.describe CommentsController, type: :controller do
-	describe "POST #create" do 
-		before do 
+	describe "POST #create" do
+		before do
 			@john = User.create(email: "john@example.com", password: "password")
 		end
 
-		context "signed in user" do 
-			it 'can create a comment' do 
+		context "signed in user" do
+			it 'can create a comment' do
 				login_user @john
 				article = Article.create(	title: "First Article",
 																	body: "Body of first article",
@@ -20,7 +20,7 @@ RSpec.describe CommentsController, type: :controller do
 		end
 
 		context "non-signed in user" do
-			it "is redirected to the sign in page" do 
+			it "is redirected to the sign in page" do
 				login_user nil
 				article = Article.create(	title: "First Article",
 																	body: "Body of first article",

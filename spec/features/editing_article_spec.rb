@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature "Editing and Article" do
-
 	before do
 		john = User.create(email: 'john@example.com', password: 'password')
 		login_as(john)
@@ -35,5 +34,4 @@ RSpec.feature "Editing and Article" do
 		expect(page).to have_content("Article has not been updated")
 		expect(current_path).to eq(article_path(@article))
 	end
-
 end

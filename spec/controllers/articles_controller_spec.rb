@@ -2,14 +2,13 @@ require 'rails_helper'
 require 'support/macros'
 
 RSpec.describe ArticlesController, type: :controller do
-
   describe "GET #edit" do
-  	before do 
+  	before do
   		@john = User.create(email: "john@example.com", password: "password")
   	end
 
-  	context "owner is allowed to edit his articles" do 
-  		it 'renders the edit template' do 
+  	context "owner is allowed to edit his articles" do
+  		it 'renders the edit template' do
   			login_user @john
   			article = Article.create(title: "first article", body: "body of first article", user: @john)
 
@@ -18,7 +17,7 @@ RSpec.describe ArticlesController, type: :controller do
   		end
   	end
 
-  	context "non-owner is not allowed to edit other users articles" do 
+  	context "non-owner is not allowed to edit other users articles" do
   		it 'redirects to the root path' do
   			fred = User.create(email: "fred@exampe.com", password: "password")
 
@@ -38,5 +37,4 @@ RSpec.describe ArticlesController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
-
 end

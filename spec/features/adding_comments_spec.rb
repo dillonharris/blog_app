@@ -1,15 +1,14 @@
 require 'rails_helper'
 
-RSpec.feature "Adding Reviews to Articles" do 
-
-	before do 
+RSpec.feature "Adding Reviews to Articles" do
+	before do
 		@john = User.create(email: "john@example.com", password: "password")
 		@fred = User.create(email: "fred@example.com", password: "password")
-	
+
 		@article = Article.create(title: "The first article", body: "body of first article", user: @john)
 	end
 
-	scenario "permits a signed in user to write a review" do 
+	scenario "permits a signed in user to write a review" do
 		login_as(@fred)
 
 		visit "/"
@@ -21,6 +20,4 @@ RSpec.feature "Adding Reviews to Articles" do
 		expect(page).to have_content("An awesome article")
 		expect(current_path).to eq(article_path(@article.comments.last.id))
 	end
-	
 end
-
